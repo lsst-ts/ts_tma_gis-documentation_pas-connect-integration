@@ -239,34 +239,34 @@ are considered.
     exchange data via SafetyNET p. The project can only be a sub-project of a PASconnect project if the PASconnect
     interface is activated.
 
-![](./media/media/image9.png)
+  ![](./media/media/image9.png)
 
-The PASconnect exchange directory is a shared directory, in which all PSS 4000 projects involved in SNp communication
-and the PASconnect project exchange data. Use the default directory.
+  The PASconnect exchange directory is a shared directory, in which all PSS 4000 projects involved in SNp communication
+  and the PASconnect project exchange data. Use the default directory.
 
-From the moment the PASconnect interface is activated and until the whole process is completed, if a compilation is
-made it will give an error.
+  From the moment the PASconnect interface is activated and until the whole process is completed, if a compilation is
+  made it will give an error.
 
-![](./media/media/image10.png)
+  ![](./media/media/image10.png)
 
 - Configure PASconnect interface variables. All PI variables that are to be used for communication with other PSS 4000
     projects must be added to the PASconnect interface. Click on the PLUS button in the PASconnect Interface Editor to
     add the individual PI variables.
 
-![](./media/media/image11.png)
+  ![](./media/media/image11.png)
 
   And the PI variables appear in the list
 
-![](./media/media/image12.png)
+  ![](./media/media/image12.png)
 
 - Create data for PASconnect. When the PSS 4000 project is ready, you need to create the data that PASconnect will
     need for I/O mapping between the projects. Click on the button
 
-![](./media/media/image13.png)
+  ![](./media/media/image13.png)
 
   An \*.XMI file is generated that must be sent to the integrator, so that it can be mapped with the PASconnect tool.
 
-![](./media/media/image14.png)
+  ![](./media/media/image14.png)
 
 - Send \*.XMI to the integrator of the Global Interlock System
 
@@ -285,9 +285,9 @@ made it will give an error.
 
   - changes that affect times such as the basic cycle time of SafetyNET p, for example
 
-After the new PASconnect data has been created, the complete workflow must be carried out in PASconnect (Synchronise
-with input data, if necessary update I/O mappings, Create output data), to enable the PSS 4000 project to be built. Or
-use the \"Process input data automatically\" option in PASconnect.
+  After the new PASconnect data has been created, the complete workflow must be carried out in PASconnect (Synchronise
+  with input data, if necessary update I/O mappings, Create output data), to enable the PSS 4000 project to be built. Or
+  use the \"Process input data automatically\" option in PASconnect.
 
 - Receive from the integrator the file \*.XMI and copy it to the directory
     c:\\ProgramData\\Pilz\\PASConnectExchange\\PASconnect Output. Be carefull, note that it has the same name but with a
@@ -296,7 +296,7 @@ use the \"Process input data automatically\" option in PASconnect.
 - Build the individual projects select the option Build all. Now the system should not give any compilation errors
     because it already has the file where the exchange I/O map is defined.
 
-![](./media/media/image15.png)
+  ![](./media/media/image15.png)
 
 ### GIS integrator
 
