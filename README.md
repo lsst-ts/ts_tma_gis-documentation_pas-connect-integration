@@ -208,20 +208,20 @@ are considered.
 
 1.  Create the FS program that acts as a gateway between GIS and the DOME_IS, for example (InterfaceDOME)
 
-![](./media/media/image3.png){width="2.352895888013998in" height="2.3348665791776027in"}
+![](./media/media/image3.png)
 
 2.  Create the global variables that are used in each of the projects. This is a proposal, grouping the variables in two
     global structures, but they can be treated independently, with other names, etc. All the variables that are to be
     exchanged between the DOME-IS and the GIS must be listed, boolean, integer or words.
 
-> ![](./media/media/image4.png){width="3.0214687226596677in" height="0.8656102362204724in"}
+> ![](./media/media/image4.png)
 >
-> ![](./media/media/image5.png){width="2.9139971566054244in" height="1.449712379702537in"}
-> ![](./media/media/image6.png){width="2.8965562117235346in" height="1.6330074365704288in"}
+> ![](./media/media/image5.png)
+> ![](./media/media/image6.png)
 
 3.  Create PI variables
 
-![](./media/media/image7.png){width="3.551963035870516in" height="3.079417104111986in"}
+![](./media/media/image7.png)
 
 > The requeriments for the I/O mapping are:
 
@@ -240,13 +240,13 @@ are considered.
 
 4.  Perform resource assignment, in FS resource with medium priority and 100ms cycle time
 
-![](./media/media/image8.png){width="3.1875in" height="1.8854166666666667in"}
+![](./media/media/image8.png)
 
 5.  Activate PASconnect interface. The PASconnect interface must be activated in all PSS 4000 projects that are to
     exchange data via SafetyNET p. The project can only be a sub-project of a PASconnect project if the PASconnect
     interface is activated.
 
-> ![](./media/media/image9.png){width="6.298611111111111in" height="3.015972222222222in"}
+> ![](./media/media/image9.png)
 >
 > The PASconnect exchange directory is a shared directory, in which all PSS 4000 projects involved in SNp communication
 > and the PASconnect project exchange data. Use the default directory.
@@ -254,26 +254,26 @@ are considered.
 > From the moment the PASconnect interface is activated and until the whole process is completed, if a compilation is
 > made it will give an error.
 >
-> ![](./media/media/image10.png){width="6.298611111111111in" height="1.2472222222222222in"}
+> ![](./media/media/image10.png)
 
 6.  Configure PASconnect interface variables. All PI variables that are to be used for communication with other PSS 4000
     projects must be added to the PASconnect interface. Click on the PLUS button in the PASconnect Interface Editor to
     add the individual PI variables.
 
-![](./media/media/image11.png){width="5.116988188976378in" height="3.547478127734033in"}
+![](./media/media/image11.png)
 
 > And the PI variables appear in the list
 
-![](./media/media/image12.png){width="5.486287182852143in" height="2.5786154855643044in"}
+![](./media/media/image12.png)
 
 7.  Create data for PASconnect. When the PSS 4000 project is ready, you need to create the data that PASconnect will
     need for I/O mapping between the projects. Click on the button
 
-![](./media/media/image13.png){width="5.537826990376203in" height="2.4740102799650043in"}
+![](./media/media/image13.png)
 
 > An \*.XMI file is generated that must be sent to the integrator, so that it can be mapped with the PASconnect tool.
 
-![](./media/media/image14.png){width="4.7046926946631675in" height="1.309740813648294in"}
+![](./media/media/image14.png)
 
 8.  Send \*.XMI to the integrator of the Global Interlock System
 
@@ -308,61 +308,61 @@ are considered.
 10. Build the individual projects select the option Build all. Now the system should not give any compilation errors
     because it already has the file where the exchange I/O map is defined.
 
-> ![](./media/media/image15.png){width="6.298611111111111in" height="2.720138888888889in"}
+> ![](./media/media/image15.png)
 
 ### GIS integrator
 
 1.  Receive the \*.XMI from each PSS 4000 project and store them in the directory
     C:\\ProgramData\\Pilz\\PASconnectExchange
 
-![](./media/media/image16.png){width="5.928338801399825in" height="2.334732064741907in"}
+![](./media/media/image16.png)
 
 2.  Create a New PASconnect project, enter the exchange directory that it configured in the individual PSS 4000 projects
 
-![](./media/media/image17.png){width="4.72626968503937in" height="1.352224409448819in"}
+![](./media/media/image17.png)
 
 > All the PSS 4000 projects for wich data was created in the exchange directory appear in the Project Manager
 
-![](./media/media/image18.png){width="2.2591371391076116in" height="2.58667104111986in"}
+![](./media/media/image18.png)
 
 3.  Open the I/O Mapping Editor and perform the I/O mappings between the projects
 
 > Data source TK_AUX_IS Data Sink TK_GIS_IS
 
-![](./media/media/image19.png){width="6.298611111111111in" height="3.1847222222222222in"}
+![](./media/media/image19.png)
 
 > Data source TK_GIS_IS Data Sink TK_AUX_IS
 
-![](./media/media/image20.png){width="6.298611111111111in" height="3.348611111111111in"}
+![](./media/media/image20.png)
 
 > Data source TK_DOME_IS Data Sink TK_GIS_IS
 
-![](./media/media/image21.png){width="6.298611111111111in" height="3.36875in"}
+![](./media/media/image21.png)
 
 > Data source TK_GIS_IS Data Sink TK_DOME_IS
 
-![](./media/media/image22.png){width="6.298611111111111in" height="3.3604166666666666in"}
+![](./media/media/image22.png)
 
 > Data source TK_M1M3_IS Data Sink TK_GIS_IS
 
-![](./media/media/image23.png){width="6.298611111111111in" height="3.4277777777777776in"}
+![](./media/media/image23.png)
 
 > Data source TK_GIS_IS Data Sink TK_M1M3_IS
 
-![](./media/media/image24.png){width="6.298611111111111in" height="3.370833333333333in"}
+![](./media/media/image24.png)
 
 > Data source TK_TMA_IS Data Sink TK_GIS_IS
 
-![](./media/media/image25.png){width="6.298611111111111in" height="3.3430555555555554in"}
+![](./media/media/image25.png)
 
 > Data source TK_GIS_IS Data Sink TK_TMA_IS
 
-![](./media/media/image26.png){width="6.298611111111111in" height="3.4229166666666666in"}
+![](./media/media/image26.png)
 
 4.  Create output data for the individual PSS 4000 projects in the directory
     C:\\ProgramData\\Pilz\\PASconnectExchange\\PASconnect Output\\\*.XMI,
 
-![](./media/media/image27.png){width="2.903436132983377in"
-height="2.3408081802274716in"}![](./media/media/image28.png){width="6.298611111111111in" height="1.8520833333333333in"}
+![](./media/media/image27.png)
+height="2.3408081802274716in"}![](./media/media/image28.png)
 
 5.  Send \*:XMI to each partner.
