@@ -308,7 +308,7 @@ are considered.
 
   ![](./media/media/image17.png)
 
-All the PSS 4000 projects for wich data was created in the exchange directory appear in the Project Manager
+  All the PSS 4000 projects for wich data was created in the exchange directory appear in the Project Manager
 
   ![](./media/media/image18.png)
 
