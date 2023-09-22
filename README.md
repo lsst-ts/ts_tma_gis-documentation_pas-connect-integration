@@ -197,53 +197,45 @@ The following work stages must be carried out in PAS4000 for each individual PSS
 are considered.
 
 - GIS_IS
-
 - M1M3_IS
-
 - DOME_IS
-
 - AUX_IS
-
 - TMA_IS
 
-1.  Create the FS program that acts as a gateway between GIS and the DOME_IS, for example (InterfaceDOME)
+- Create the FS program that acts as a gateway between GIS and the DOME_IS, for example (InterfaceDOME)
 
-![](./media/media/image3.png)
+  ![](./media/media/image3.png)
 
-2.  Create the global variables that are used in each of the projects. This is a proposal, grouping the variables in two
+- Create the global variables that are used in each of the projects. This is a proposal, grouping the variables in two
     global structures, but they can be treated independently, with other names, etc. All the variables that are to be
     exchanged between the DOME-IS and the GIS must be listed, boolean, integer or words.
 
-![](./media/media/image4.png)
+  ![](./media/media/image4.png)
 
-![](./media/media/image5.png)
+  ![](./media/media/image5.png)
 
-![](./media/media/image6.png)
+  ![](./media/media/image6.png)
 
-3. Create PI variables
+- Create PI variables
 
 ![](./media/media/image7.png)
 
-The requirements for the I/O mapping are:
+  The requirements for the I/O mapping are:
 
-- The data types of the data source and data sink must be elementary data types, I/O mappings between derived data
+  - The data types of the data source and data sink must be elementary data types, I/O mappings between derived data
   types is not permitted, array, structure.
-
-- The name of the data type of the source and data sink must match, but the SAFE prefix is not taken account.
-
-- I-PI variables that are used for I/O mapping within a PSS 4000 project may no longer be used for cross-project SNp
+  - The name of the data type of the source and data sink must match, but the SAFE prefix is not taken account.
+  - I-PI variables that are used for I/O mapping within a PSS 4000 project may no longer be used for cross-project SNp
   communication.
-
-- If I/O mappings in the PASconnect project are changed, then the PSS 4000 projects between which IO mappings have
+  - If I/O mappings in the PASconnect project are changed, then the PSS 4000 projects between which IO mappings have
   been changed will need to be rebuilt, as well as any projects that exchange data with these projects. If the
   projects are not rebuilt and downloaded, then the SafetyNET p configuration in the PSS 4000 projects will not be
   consistent. The data that is sent may not then correspond to the data anticipated by the receiver.
+  - Perform resource assignment, in FS resource with medium priority and 100ms cycle time
 
-1.  Perform resource assignment, in FS resource with medium priority and 100ms cycle time
+  ![](./media/media/image8.png)
 
-![](./media/media/image8.png)
-
-5.  Activate PASconnect interface. The PASconnect interface must be activated in all PSS 4000 projects that are to
+- Activate PASconnect interface. The PASconnect interface must be activated in all PSS 4000 projects that are to
     exchange data via SafetyNET p. The project can only be a sub-project of a PASconnect project if the PASconnect
     interface is activated.
 
@@ -257,114 +249,108 @@ made it will give an error.
 
 ![](./media/media/image10.png)
 
-1.  Configure PASconnect interface variables. All PI variables that are to be used for communication with other PSS 4000
+- Configure PASconnect interface variables. All PI variables that are to be used for communication with other PSS 4000
     projects must be added to the PASconnect interface. Click on the PLUS button in the PASconnect Interface Editor to
     add the individual PI variables.
 
 ![](./media/media/image11.png)
 
-And the PI variables appear in the list
+  And the PI variables appear in the list
 
 ![](./media/media/image12.png)
 
-7.  Create data for PASconnect. When the PSS 4000 project is ready, you need to create the data that PASconnect will
+- Create data for PASconnect. When the PSS 4000 project is ready, you need to create the data that PASconnect will
     need for I/O mapping between the projects. Click on the button
 
 ![](./media/media/image13.png)
 
-An \*.XMI file is generated that must be sent to the integrator, so that it can be mapped with the PASconnect tool.
+  An \*.XMI file is generated that must be sent to the integrator, so that it can be mapped with the PASconnect tool.
 
 ![](./media/media/image14.png)
 
-8.  Send \*.XMI to the integrator of the Global Interlock System
+- Send \*.XMI to the integrator of the Global Interlock System
 
-If changes are made to a PSS 4000 project in PAS4000 after Create data for PASconnect has been run, then in many cases
-Create data for PASconnect will need to be repeated, otherwise PAS4000 will not build the project.Changes that require
-new PASconnect data to be created:
+  If changes are made to a PSS 4000 project in PAS4000 after Create data for PASconnect has been run, then in many cases
+  Create data for PASconnect will need to be repeated, otherwise PAS4000 will not build the project.Changes that require
+  new PASconnect data to be created:
+  - adding a new device to the project or deleting an existing device
+  - changing one of the following properties for a device: device name, product type, IP address, firmware versión
+  - changing the project\'s SafetyNET p protocol versión
+  - adding a new PI variable to the PASconnect interface or deleting an existing PI variable
+  - changing one of the following properties for a PI variable that will be used for the PASconnect interface: variable
+    name, data type, direction (O-PI variable to I-PI variable and vice-versa), instance tree, resource assignment,
+    task cycle time
 
-- adding a new device to the project or deleting an existing device
+  - changing the project name
 
-- changing one of the following properties for a device: device name, product type, IP address, firmware versión
-
-- changing the project\'s SafetyNET p protocol versión
-
-- adding a new PI variable to the PASconnect interface or deleting an existing PI variable
-
-- changing one of the following properties for a PI variable that will be used for the PASconnect interface: variable
-  name, data type, direction (O-PI variable to I-PI variable and vice-versa), instance tree, resource assignment,
-  task cycle time
-
-- changing the project name
-
-- changes that affect times such as the basic cycle time of SafetyNET p, for example
+  - changes that affect times such as the basic cycle time of SafetyNET p, for example
 
 After the new PASconnect data has been created, the complete workflow must be carried out in PASconnect (Synchronise
 with input data, if necessary update I/O mappings, Create output data), to enable the PSS 4000 project to be built. Or
 use the \"Process input data automatically\" option in PASconnect.
 
-9.  Receive from the integrator the file \*.XMI and copy it to the directory
+- Receive from the integrator the file \*.XMI and copy it to the directory
     c:\\ProgramData\\Pilz\\PASConnectExchange\\PASconnect Output. Be carefull, note that it has the same name but with a
     larger size. Therefore it is saved in another folder. (Completed the point 3.2 of this document).
 
-10. Build the individual projects select the option Build all. Now the system should not give any compilation errors
+- Build the individual projects select the option Build all. Now the system should not give any compilation errors
     because it already has the file where the exchange I/O map is defined.
 
 ![](./media/media/image15.png)
 
 ### GIS integrator
 
-1.  Receive the \*.XMI from each PSS 4000 project and store them in the directory
-    C:\\ProgramData\\Pilz\\PASconnectExchange
+- Receive the \*.XMI from each PSS 4000 project and store them in the directory `C:\\ProgramData\\Pilz\\PASconnectExchange`
 
-![](./media/media/image16.png)
+  ![](./media/media/image16.png)
 
-2.  Create a New PASconnect project, enter the exchange directory that it configured in the individual PSS 4000 projects
+- Create a New PASconnect project, enter the exchange directory that it configured in the individual PSS 4000 projects
 
-![](./media/media/image17.png)
+  ![](./media/media/image17.png)
 
 All the PSS 4000 projects for wich data was created in the exchange directory appear in the Project Manager
 
-![](./media/media/image18.png)
+  ![](./media/media/image18.png)
 
-3.  Open the I/O Mapping Editor and perform the I/O mappings between the projects
+- Open the I/O Mapping Editor and perform the I/O mappings between the projects
 
-Data source TK_AUX_IS Data Sink TK_GIS_IS
+  Data source TK_AUX_IS Data Sink TK_GIS_IS
 
-![](./media/media/image19.png)
+  ![](./media/media/image19.png)
 
-Data source TK_GIS_IS Data Sink TK_AUX_IS
+  Data source TK_GIS_IS Data Sink TK_AUX_IS
 
-![](./media/media/image20.png)
+  ![](./media/media/image20.png)
 
-Data source TK_DOME_IS Data Sink TK_GIS_IS
+  Data source TK_DOME_IS Data Sink TK_GIS_IS
 
-![](./media/media/image21.png)
+  ![](./media/media/image21.png)
 
-Data source TK_GIS_IS Data Sink TK_DOME_IS
+  Data source TK_GIS_IS Data Sink TK_DOME_IS
 
-![](./media/media/image22.png)
+  ![](./media/media/image22.png)
 
-Data source TK_M1M3_IS Data Sink TK_GIS_IS
+  Data source TK_M1M3_IS Data Sink TK_GIS_IS
 
-![](./media/media/image23.png)
+  ![](./media/media/image23.png)
 
-Data source TK_GIS_IS Data Sink TK_M1M3_IS
+  Data source TK_GIS_IS Data Sink TK_M1M3_IS
 
-![](./media/media/image24.png)
+  ![](./media/media/image24.png)
 
-Data source TK_TMA_IS Data Sink TK_GIS_IS
+  Data source TK_TMA_IS Data Sink TK_GIS_IS
 
-![](./media/media/image25.png)
+  ![](./media/media/image25.png)
 
-Data source TK_GIS_IS Data Sink TK_TMA_IS
+  Data source TK_GIS_IS Data Sink TK_TMA_IS
 
-![](./media/media/image26.png)
+  ![](./media/media/image26.png)
 
-4.  Create output data for the individual PSS 4000 projects in the directory
+- Create output data for the individual PSS 4000 projects in the directory
     `C:\\ProgramData\\Pilz\\PASconnectExchange\\PASconnect Output\\\*.XMI`,
 
-![](./media/media/image27.png)
+  ![](./media/media/image27.png)
 
-![](./media/media/image28.png)
+  ![](./media/media/image28.png)
 
-5.  Send \*:XMI to each partner.
+- Send \*:XMI to each partner.
