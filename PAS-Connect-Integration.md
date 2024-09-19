@@ -8,18 +8,6 @@
 | **Approved by:**            | Ismael Ruiz de Argandoña |
 | **Date:**                   | 2022/08/30               |
 
-## INDEX
-
-[1. Introduction [4](#introduction)](#introduction)
-
-[2. Reference documents [5](#reference-documents)](#reference-documents)
-
-[3. Create cross-project -Procedure- [5](#create-cross-project--procedure-)](#create-cross-project--procedure-)
-
-[3.1 Each PSS 4000 project [5](#each-pss-4000-project)](#each-pss-4000-project)
-
-[3.2 GIS integrator [11](#gis-integrator)](#gis-integrator)
-
 ## DOCUMENT HISTORY
 
 <table>
@@ -137,7 +125,7 @@
 This document describe the procedure to create a cross-project SNp communication between PAS4000 projects of Global
 Interlock System. All projects exchange information with the GIS, but not between them.
 
-```plantuml
+```{uml}
 @startuml
 skinparam componentStyle rectangle
 
